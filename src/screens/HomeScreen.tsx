@@ -6,6 +6,9 @@ import {SearchComponent} from '../components/Search';
 import {DescriptionComponent} from '../components/Description';
 import {CardComponent} from '../components/CardComponent';
 
+let horizontalCard = [1, 2, 3, 4, 5, 6, 7];
+let verticalCard = [1, 2, 3, 4, 5, 6, 7];
+
 const HomeScreen = () => {
   return (
     <View style={styles.contain}>
@@ -25,14 +28,9 @@ const HomeScreen = () => {
           <View style={styles.card}>
             {/* card view */}
             <ScrollView horizontal={true}>
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
-              <CardComponent />
+              {horizontalCard.map(item => (
+                <CardComponent key={item} />
+              ))}
             </ScrollView>
           </View>
         </View>
@@ -46,15 +44,9 @@ const HomeScreen = () => {
           {/* card horizontal view */}
           <View>
             {/* card view */}
-
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
-            <CardComponent />
+            {verticalCard.map(item => (
+              <CardComponent key={item} />
+            ))}
           </View>
         </View>
       </ScrollView>
