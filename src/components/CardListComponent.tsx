@@ -4,8 +4,9 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '../utils/Icon';
 
 export function CardListComponent({key}: any) {
+  console.log(key);
   return (
-    <View style={styles.contain} key={key}>
+    <View style={styles.contain}>
       <Pressable style={({pressed}) => pressed && styles.pressed}>
         <View style={styles.card}>
           <View style={styles.imageContainer}>
