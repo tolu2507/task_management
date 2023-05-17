@@ -5,6 +5,7 @@ import {HeaderComponent} from '../components/Header.component';
 import {SearchComponent} from '../components/Search';
 import {DescriptionComponent} from '../components/Description';
 import {CardComponent} from '../components/CardComponent';
+import {CardListComponent} from '../components/CardListComponent';
 
 let horizontalCard = [1, 2, 3, 4, 5, 6, 7];
 let verticalCard = [1, 2, 3, 4, 5, 6, 7];
@@ -45,7 +46,7 @@ const HomeScreen = () => {
           <View>
             {/* card view */}
             {verticalCard.map(item => (
-              <CardComponent key={item} />
+              <CardListComponent key={item} />
             ))}
           </View>
         </View>
