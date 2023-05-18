@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
+        "DATAITEMS",
         "Entypo",
         "Octi",
-        "smalltext"
-    ]
+        "smalltext",
+        "Todoctx"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

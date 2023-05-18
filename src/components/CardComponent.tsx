@@ -5,8 +5,8 @@ import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import {DescriptionComponent} from './Description';
 import {FontAwesomeIcon} from '../utils/Icon';
 
-export function CardComponent({ key }: any) {
-  console.log(key)
+export function CardComponent({item}: any) {
+  console.log(item);
   return (
     <View style={styles.contain}>
       <Pressable style={({pressed}) => pressed && styles.pressed}>

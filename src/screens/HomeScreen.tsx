@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useContext } from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {HeaderComponent} from '../components/Header.component';
 import {SearchComponent} from '../components/Search';
 import {DescriptionComponent} from '../components/Description';
 import {CardComponent} from '../components/CardComponent';
-import {CardListComponent} from '../components/CardListComponent';
-
-let horizontalCard = [1, 2, 3, 4, 5, 6, 7];
-let verticalCard = [1, 2, 3, 4, 5, 6, 7];
+import { CardListComponent } from '../components/CardListComponent';
+import { ManagementContext } from '../store/context';
 
 const HomeScreen = () => {
+  const Todoctx = useContext(ManagementContext);
+
   return (
     <View style={styles.contain}>
       {/* top section with image and icon */}
@@ -29,7 +29,7 @@ const HomeScreen = () => {
           <View style={styles.card}>
             {/* card view */}
             <ScrollView horizontal={true}>
-              {horizontalCard.map(item => (
+              {Todoctx.data.map(item => (
                 <CardComponent key={item} />
               ))}
             </ScrollView>
@@ -45,7 +45,7 @@ const HomeScreen = () => {
           {/* card horizontal view */}
           <View>
             {/* card view */}
-            {verticalCard.map(item => (
+            {Todoctx.data.map(item => (
               <CardListComponent key={item} />
             ))}
           </View>

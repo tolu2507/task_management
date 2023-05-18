@@ -11,11 +11,24 @@ import {
   MaterialIcon,
 } from '../utils/Icon';
 
-export const dataItem = [
+export interface DATAITEMS{
+    id: string;
+    image: any;
+    Title: string;
+    description: string;
+    date: string;
+    todo: string[];
+    people: string[];
+    files: string[];
+    attachments: string[];
+}
+
+export const dataItems :DATAITEMS[] = [
   {
     id: '1',
     image: require('../../assets/pic4.png'),
-    Task: 'creating website Design and Development',
+    Title: 'creating website Design and Development',
+    description:'this is the description section it can be as long as i please.',
     date: '19 june 2022',
     todo: [
       'Create a website for job search',
@@ -44,7 +57,8 @@ export const dataItem = [
   {
     id: '2',
     image: require('../../assets/pic4.png'),
-    Task: 'creating website Design and Development',
+    Title: 'creating website Design and Development',
+    description:'this is the description section it can be as long as i please.',
     date: '19 june 2022',
     todo: [
       'Create a website for job search',
@@ -73,7 +87,8 @@ export const dataItem = [
   {
     id: '3',
     image: require('../../assets/pic4.png'),
-    Task: 'creating website Design and Development',
+    Title: 'creating website Design and Development',
+    description:'this is the description section it can be as long as i please.',
     date: '19 june 2022',
     todo: [
       'Create a website for job search',

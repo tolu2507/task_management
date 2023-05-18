@@ -3,8 +3,8 @@ import React from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '../utils/Icon';
 
-export function CardListComponent({key}: any) {
-  console.log(key);
+export function CardListComponent({item}: any) {
+  console.log(item);
   return (
     <View style={styles.contain}>
       <Pressable style={({pressed}) => pressed && styles.pressed}>
