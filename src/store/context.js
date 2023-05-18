@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
-import React, { createContext, useState } from 'react';
-import { dataItems} from '../data/data';
+import React, {createContext, useState} from 'react';
+import {dataItems, Person} from '../data/data';
 
 export const ManagementContext = createContext({
   data: [],
+  person: {},
   add: data => {},
   remove: id => {},
 });
@@ -21,6 +22,7 @@ export function TaskContextProvider({children}) {
 
   const values = {
     data: manageTasks,
+    person: Person,
     add: addToTask,
     remove: removeFromTask,
   };

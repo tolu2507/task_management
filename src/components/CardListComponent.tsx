@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from '../utils/Icon';
 
 export function CardListComponent({item}: any) {
   console.log(item);
+  const {Title, todo} = item;
   return (
     <View style={styles.contain}>
       <Pressable style={({pressed}) => pressed && styles.pressed}>
@@ -15,18 +16,16 @@ export function CardListComponent({item}: any) {
             </View>
           </View>
           <View style={styles.boxContainer}>
-            <Text style={styles.text}>Creating website design</Text>
+            <Text style={styles.text}>
+              {Title.length > 30 ? Title.slice(0, 25) + '......' : Title}
+            </Text>
             <View style={styles.todo}>
-              <View style={styles.textView}>
-                <View style={styles.smallCircle} />
-                <Text>dfsjfhsjfisd</Text>
-              </View>
-              <View style={styles.textView}>
-                <Pressable>
+              {todo.map((items: string) => (
+                <View style={styles.textView}>
                   <View style={styles.smallCircle} />
-                </Pressable>
-                <Text>dfsjfhsjfisd</Text>
-              </View>
+                  <Text>{items}</Text>
+                </View>
+              ))}
             </View>
           </View>
         </View>

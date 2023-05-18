@@ -20,8 +20,9 @@ function TabScreen() {
           padding: 20,
         },
       }}>
-      {TabsArray.map(({name, component, icon}) => (
+      {TabsArray.map(({name, component, icon,id}) => (
         <Tab.Screen
+          key={id}
           name={name}
           component={component}
           options={{

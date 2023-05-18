@@ -4,64 +4,49 @@ import React from 'react';
 import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import {DescriptionComponent} from './Description';
 import {FontAwesomeIcon} from '../utils/Icon';
+import {DATAITEMS} from '../data/data';
 
-export function CardComponent({item}: any) {
+export function CardComponent({item}: {item: DATAITEMS}) {
   console.log(item);
+
+  const {image, Title, attachments, date, people, todo, files} = item;
+
   return (
     <View style={styles.contain}>
       <Pressable style={({pressed}) => pressed && styles.pressed}>
         <View style={styles.card}>
           <View style={styles.imageContainer}>
-            <Image
-              source={require('../../assets/pic.png')}
-              style={styles.image}
-            />
+            <Image source={image} style={styles.image} />
           </View>
           <View>
             <DescriptionComponent
-              text={'Creating Website'}
-              smalltext={'12 june 2022'}
+              text={Title.length > 15 ? Title.slice(0, 16) + '...' : Title}
+              smalltext={date}
               style={styles.fontSize}
             />
             <View style={styles.textView}>
-              <Text>lorem posuiydjhchdfisofjejifch</Text>
-              <Text>lorem posuiydjhchdfisofjejifch</Text>
+              {Array.isArray(todo) && todo.map(text => <Text>{text}</Text>)}
             </View>
           </View>
           <View style={styles.textViews}>
             {/* right */}
             <View style={styles.smallView}>
               {/* group people */}
-              <View
-                style={[
-                  styles.abs,
-                  {marginLeft: 0, backgroundColor: '#636360'},
-                ]}
-              />
-              <View
-                style={[
-                  styles.abs,
-                  {marginLeft: 10, backgroundColor: 'yellow'},
-                ]}
-              />
-              <View
-                style={[
-                  styles.abs,
-                  {marginLeft: 20, backgroundColor: '#2b3988'},
-                ]}
-              />
-              <View
-                style={[
-                  styles.abs,
-                  {marginLeft: 30, backgroundColor: '#0ec24a'},
-                ]}
-              />
-              <View
-                style={[
-                  styles.abs,
-                  {marginLeft: 40, backgroundColor: '#3b3b34'},
-                ]}
-              />
+              {people.map(peopleItem => (
+                <View
+                  style={[
+                    styles.abs,
+                    {
+                      marginLeft:
+                        peopleItem.margin === 0
+                          ? 0
+                          : peopleItem.margin && peopleItem.margin * 10,
+                      backgroundColor: '#636360',
+                    },
+                  ]}>
+                  <Image source={peopleItem.image} style={styles.image} />
+                </View>
+              ))}
             </View>
 
             {/* left */}
@@ -71,11 +56,11 @@ export function CardComponent({item}: any) {
                 <View style={[styles.row, {backgroundColor: 'transparent'}]}>
                   <View style={styles.row}>
                     <FontAwesomeIcon size={12} color={'grey'} name={'home'} />
-                    <Text>10</Text>
+                    <Text>{attachments.length}</Text>
                   </View>
                   <View style={styles.row}>
                     <FontAwesomeIcon size={12} color={'grey'} name={'home'} />
-                    <Text>10</Text>
+                    <Text>{files.length}</Text>
                   </View>
                 </View>
               </View>
@@ -114,6 +99,7 @@ const styles = StyleSheet.create({
   },
   fontSize: {
     fontSize: 14,
+    textTransform: 'capitalize',
   },
   contain: {
     margin: 5,
@@ -126,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f3f0f0',
   },
   textView: {
-    padding: 2,
+    padding: 0,
     textAlign: 'flex-start',
   },
   textViews: {

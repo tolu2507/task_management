@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {HeaderComponent} from '../components/Header.component';
 import {SearchComponent} from '../components/Search';
 import {DescriptionComponent} from '../components/Description';
 import {CardComponent} from '../components/CardComponent';
-import { CardListComponent } from '../components/CardListComponent';
-import { ManagementContext } from '../store/context';
+import {CardListComponent} from '../components/CardListComponent';
+import {ManagementContext} from '../store/context';
+import {DATAITEMS} from '../data/data';
 
 const HomeScreen = () => {
   const Todoctx = useContext(ManagementContext);
@@ -15,7 +16,6 @@ const HomeScreen = () => {
     <View style={styles.contain}>
       {/* top section with image and icon */}
       <HeaderComponent />
-
       {/* search view */}
       <View style={styles.search}>
         <SearchComponent />
@@ -29,8 +29,8 @@ const HomeScreen = () => {
           <View style={styles.card}>
             {/* card view */}
             <ScrollView horizontal={true}>
-              {Todoctx.data.map(item => (
-                <CardComponent key={item} />
+              {Todoctx.data.map((item: DATAITEMS) => (
+                <CardComponent item={item} key={item.id} />
               ))}
             </ScrollView>
           </View>
@@ -45,8 +45,8 @@ const HomeScreen = () => {
           {/* card horizontal view */}
           <View>
             {/* card view */}
-            {Todoctx.data.map(item => (
-              <CardListComponent key={item} />
+            {Todoctx.data.map((item: DATAITEMS) => (
+              <CardListComponent item={item} key={item.id} />
             ))}
           </View>
         </View>
