@@ -5,15 +5,29 @@ import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import {DescriptionComponent} from './Description';
 import {FontAwesomeIcon} from '../utils/Icon';
 import {DATAITEMS} from '../data/data';
+import PeopleGroupComponent from './PeopleGroupComponent';
 
-export function CardComponent({item}: {item: DATAITEMS}) {
+export function CardComponent({
+  item,
+  navigation,
+}: {
+  item: DATAITEMS;
+  navigation: any;
+}) {
   console.log(item);
+  const {navigate} = navigation;
 
   const {image, Title, attachments, date, people, todo, files} = item;
 
+  function handlePress() {
+    navigate('Task', {item: item});
+  }
+
   return (
     <View style={styles.contain}>
-      <Pressable style={({pressed}) => pressed && styles.pressed}>
+      <Pressable
+        style={({pressed}) => pressed && styles.pressed}
+        onPress={handlePress}>
         <View style={styles.card}>
           <View style={styles.imageContainer}>
             <Image source={image} style={styles.image} />
@@ -33,19 +47,7 @@ export function CardComponent({item}: {item: DATAITEMS}) {
             <View style={styles.smallView}>
               {/* group people */}
               {people.map(peopleItem => (
-                <View
-                  style={[
-                    styles.abs,
-                    {
-                      marginLeft:
-                        peopleItem.margin === 0
-                          ? 0
-                          : peopleItem.margin && peopleItem.margin * 10,
-                      backgroundColor: '#636360',
-                    },
-                  ]}>
-                  <Image source={peopleItem.image} style={styles.image} />
-                </View>
+                <PeopleGroupComponent peopleItem={peopleItem} />
               ))}
             </View>
 

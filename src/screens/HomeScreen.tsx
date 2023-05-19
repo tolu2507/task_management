@@ -9,7 +9,7 @@ import {CardListComponent} from '../components/CardListComponent';
 import {ManagementContext} from '../store/context';
 import {DATAITEMS} from '../data/data';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const Todoctx = useContext(ManagementContext);
 
   return (
@@ -30,7 +30,11 @@ const HomeScreen = () => {
             {/* card view */}
             <ScrollView horizontal={true}>
               {Todoctx.data.map((item: DATAITEMS) => (
-                <CardComponent item={item} key={item.id} />
+                <CardComponent
+                  item={item}
+                  navigation={navigation}
+                  key={item.id}
+                />
               ))}
             </ScrollView>
           </View>

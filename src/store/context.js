@@ -4,7 +4,7 @@ import {dataItems, Person} from '../data/data';
 
 export const ManagementContext = createContext({
   data: [],
-  person: {},
+  person: {image:'',name:''},
   add: data => {},
   remove: id => {},
 });

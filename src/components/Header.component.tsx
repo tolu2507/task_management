@@ -1,22 +1,22 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Image, Text, StyleSheet, Pressable} from 'react-native';
+import {ManagementContext} from '../store/context';
 import {MaterialIcons} from '../utils/Icon';
 
 export function HeaderComponent() {
+  const PersonCtx = useContext(ManagementContext);
+  const {person} = PersonCtx;
   return (
     <View style={styles.container}>
       <View style={styles.large}>
         {/* picture and name */}
         <View style={styles.imageContainer}>
-          <Image
-            source={require('../../assets/pic.png')}
-            style={styles.image}
-          />
+          <Image source={{uri: person.image}} style={styles.image} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.text1}>Welcome Back!!</Text>
-          <Text style={styles.text2}>Daniel Alexander</Text>
+          <Text style={styles.text2}>{person.name}</Text>
         </View>
       </View>
       <Pressable style={({pressed}) => pressed && styles.pressed}>

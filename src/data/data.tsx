@@ -11,7 +11,7 @@ import {
   MaterialIcon,
 } from '../utils/Icon';
 
-interface People {
+export interface People {
   image: any;
   margin?: number;
   name: string;
@@ -180,7 +180,8 @@ const TabsArray = [
 ];
 
 export const Person: People = {
-  image: 'https://unsplash.com/photos/3JmfENcL24M',
+  image:
+    'https://images.freeimages.com/images/large-previews/4fe/handsome-male-traveler-1637362.jpg',
   name: 'Bamisile Tolulope',
 };
 export default TabsArray;

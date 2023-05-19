@@ -2,11 +2,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-export function DescriptionComponent({text, smalltext,style}: Description) {
+export function DescriptionComponent({text, smalltext,style, style2}: Description) {
   return (
     <View style={styles.headerText}>
       <Text style={[styles.text1,style]}>{text}</Text>
-      <Text style={[styles.text2,style]}>{smalltext}</Text>
+      <Text style={[styles.text2,style2]}>{smalltext}</Text>
     </View>
   );
 }
@@ -14,6 +14,7 @@ interface Description {
   text: string;
   smalltext: string;
   style?: {};
+  style2?:{}
 }
 
 const styles = StyleSheet.create({
