@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import Title from '../components/Title';
+import TextWrapper from '../components/TextWrapper';
 
 const TodoScreen = ({navigation}: TODO) => {
   return (
@@ -15,6 +16,9 @@ const TodoScreen = ({navigation}: TODO) => {
           icon2="calendar"
           name="August"
         />
+        <TextWrapper text={'Today'}>
+          <Text style={[styles.text, styles.title]}>{'Thursday 24 Aug'}</Text>
+        </TextWrapper>
       </View>
     </View>
   );
@@ -34,6 +38,9 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   content: {flex: 1, marginHorizontal: 20, marginVertical: 20},
+  text: {
+    color: 'black',
+  },
 });
 
 export interface TODO {
