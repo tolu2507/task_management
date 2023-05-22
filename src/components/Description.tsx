@@ -12,7 +12,7 @@ export function DescriptionComponent({text, smalltext,style, style2}: Descriptio
 }
 interface Description {
   text: string;
-  smalltext: string;
+  smalltext?: string;
   style?: {};
   style2?:{}
 }

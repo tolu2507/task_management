@@ -4,8 +4,7 @@ import React from 'react';
 import TextWrapper from '../components/TextWrapper';
 import PeopleGroupComponent from '../components/PeopleGroupComponent';
 import {DATAITEMS} from '../data/data';
-import {IonIcon, MaterialIcons} from '../utils/Icon';
-import ButtonComponent from '../components/Pressable';
+import Title from '../components/Title';
 
 const TasksScreen = ({route, navigation}: any) => {
   const {item}: {item: DATAITEMS} = route.params;
@@ -22,28 +21,17 @@ const TasksScreen = ({route, navigation}: any) => {
       {/* top section */}
 
       <ImageBackground
-        source={require('../../assets/pic5.png')}
+        source={require('../../assets/pic7.png')}
         style={styles.image}>
         <View style={styles.headerBottom}>
           {/* header view with icons and text */}
-          <View style={styles.header}>
-            <ButtonComponent
-              style={styles.pressed}
-              onPress={() => navigation.goBack()}>
-              <IonIcon name="arrow-back" size={25} color={'#0f0101'} />
-            </ButtonComponent>
-            <Text style={[styles.text, styles.title]}>Task details</Text>
-            <ButtonComponent
-              style={styles.pressed}
-              onPress={() => console.log('pressed')}>
-              <MaterialIcons
-                size={25}
-                name={'dots-horizontal'}
-                color={'#0f0101'}
-              />
-            </ButtonComponent>
-          </View>
-
+          <Title
+            navigation={navigation}
+            style={styles.title}
+            color={styles.iconColor}
+            icon1="arrow-back"
+            icon2="dots-horizontal"
+          />
           {/* header content view  */}
           <View style={styles.content}>
             <TextWrapper text={'Task Title'}>
@@ -88,6 +76,9 @@ const TasksScreen = ({route, navigation}: any) => {
 export default TasksScreen;
 
 const styles = StyleSheet.create({
+  iconColor: {
+    color: '#fbfbfb',
+  },
   pressed: {
     backgroundColor: '#86e683',
     borderRadius: 25,
@@ -96,6 +87,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     fontWeight: '700',
     fontSize: 25,
+    color: '#fbfbfb',
   },
   list: {
     padding: 15,
@@ -137,12 +129,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
     marginVertical: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 60,
   },
   headerBottom: {
     flex: 1,
