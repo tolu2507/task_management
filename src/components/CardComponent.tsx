@@ -39,7 +39,7 @@ export function CardComponent({
               style={styles.fontSize}
             />
             <View style={styles.textView}>
-              {Array.isArray(todo) && todo.map(text => <Text>{text}</Text>)}
+              {Array.isArray(todo) && todo.map(text => <Text style={styles.text}>{text}</Text>)}
             </View>
           </View>
           <View style={styles.textViews}>
@@ -58,11 +58,11 @@ export function CardComponent({
                 <View style={[styles.row, {backgroundColor: 'transparent'}]}>
                   <View style={styles.row}>
                     <FontAwesomeIcon size={12} color={'grey'} name={'home'} />
-                    <Text>{attachments.length}</Text>
+                    <Text style={styles.text}>{attachments.length}</Text>
                   </View>
                   <View style={styles.row}>
                     <FontAwesomeIcon size={12} color={'grey'} name={'home'} />
-                    <Text>{files.length}</Text>
+                    <Text style={styles.text}>{files.length}</Text>
                   </View>
                 </View>
               </View>
@@ -116,6 +116,9 @@ const styles = StyleSheet.create({
   textView: {
     padding: 0,
     textAlign: 'flex-start',
+  },
+  text: {
+    color:'black'
   },
   textViews: {
     padding: 2,

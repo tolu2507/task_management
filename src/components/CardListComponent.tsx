@@ -23,7 +23,7 @@ export function CardListComponent({item}: any) {
               {todo.map((items: string) => (
                 <View style={styles.textView}>
                   <View style={styles.smallCircle} />
-                  <Text>{items}</Text>
+                  <Text style={styles.texts}>{items}</Text>
                 </View>
               ))}
             </View>
@@ -93,5 +93,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderWidth: 1,
     borderColor: 'grey',
+  },
+  texts: {
+    color: 'black',
   },
 });

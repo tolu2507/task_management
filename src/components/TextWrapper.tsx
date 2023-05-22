@@ -7,13 +7,15 @@ const TextWrapper = ({
   children,
   text,
   secondText,
+  style,
 }: {
   children: any;
   text: string;
   secondText?: string;
+  style?: {};
 }) => {
   return (
-    <View>
+    <View style={[style]}>
       <DescriptionComponent
         text={text}
         smalltext={secondText ? secondText : ''}
@@ -41,6 +43,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   viewContainer: {
-    marginTop: 30,
+    marginTop: 0,
   },
 });

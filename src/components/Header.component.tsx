@@ -1,12 +1,16 @@
 /* eslint-disable prettier/prettier */
 import React, {useContext} from 'react';
-import {View, Image, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Image, Text, StyleSheet} from 'react-native';
 import {ManagementContext} from '../store/context';
 import {MaterialIcons} from '../utils/Icon';
+import ButtonComponent from './Pressable';
 
 export function HeaderComponent() {
   const PersonCtx = useContext(ManagementContext);
   const {person} = PersonCtx;
+  function handlePress() {
+    console.log('pressed');
+  }
   return (
     <View style={styles.container}>
       <View style={styles.large}>
@@ -19,13 +23,12 @@ export function HeaderComponent() {
           <Text style={styles.text2}>{person.name}</Text>
         </View>
       </View>
-      <Pressable style={({pressed}) => pressed && styles.pressed}>
+      <ButtonComponent style={styles.pressed} onPress={handlePress}>
         <View style={styles.icon}>
           {/* icon */}
-
           <MaterialIcons size={30} name={'dots-horizontal'} color={'#0d1100'} />
         </View>
-      </Pressable>
+      </ButtonComponent>
     </View>
   );
 }
