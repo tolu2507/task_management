@@ -4,7 +4,7 @@ import React from 'react';
 import ButtonComponent from './Pressable';
 import {IonIcon, MaterialIcons} from '../utils/Icon';
 
-const Title = ({navigation, style, color, icon1, icon2}: Title) => {
+const Title = ({navigation, style, color, icon1, icon2, name}: Title) => {
   return (
     <View style={styles.header}>
       <ButtonComponent
@@ -12,7 +12,7 @@ const Title = ({navigation, style, color, icon1, icon2}: Title) => {
         onPress={() => navigation.goBack()}>
         <IonIcon name={icon1} size={25} color={color} />
       </ButtonComponent>
-      <Text style={[styles.text, style]}>Task details</Text>
+      <Text style={[styles.text, style]}>{name}</Text>
       <ButtonComponent
         style={styles.pressed}
         onPress={() => console.log('pressed')}>
@@ -30,6 +30,7 @@ interface Title {
   color: any;
   icon1: string;
   icon2?: string;
+  name: string;
 }
 
 const styles = StyleSheet.create({

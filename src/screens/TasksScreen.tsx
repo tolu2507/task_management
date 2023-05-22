@@ -31,6 +31,7 @@ const TasksScreen = ({route, navigation}: any) => {
             color={styles.iconColor}
             icon1="arrow-back"
             icon2="dots-horizontal"
+            name="Task details"
           />
           {/* header content view  */}
           <View style={styles.content}>

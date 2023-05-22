@@ -13,6 +13,7 @@ const TodoScreen = ({navigation}: TODO) => {
           color={'black'}
           icon1={'arrow-back'}
           icon2="calendar"
+          name="August"
         />
       </View>
     </View>
