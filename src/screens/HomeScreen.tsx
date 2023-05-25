@@ -29,7 +29,7 @@ const HomeScreen = ({navigation}: any) => {
           <View style={styles.card}>
             {/* card view */}
             <ScrollView horizontal={true}>
-              {Todoctx.data.map((item: DATAITEMS) => (
+              {Todoctx.onGoing.map((item: DATAITEMS) => (
                 <CardComponent
                   item={item}
                   navigation={navigation}
@@ -49,8 +49,12 @@ const HomeScreen = ({navigation}: any) => {
           {/* card horizontal view */}
           <View style={styles.scroll}>
             {/* card view */}
-            {Todoctx.data.map((item: DATAITEMS) => (
-              <CardListComponent item={item} key={item.id} />
+            {Todoctx.dailyActivities.map((item: DATAITEMS) => (
+              <CardListComponent
+                item={item}
+                key={item.id}
+                navigation={navigation}
+              />
             ))}
           </View>
         </View>

@@ -19,11 +19,13 @@ export const List = ({items}: {items: DATAITEMS}) => {
               ? items.Title.slice(0, 30) + '....'
               : items.Title}
           </Text>
-          {items.todo.map(item => (
-            <View style={styles.list}>
+          {items.todos.map((item, i) => (
+            <View style={styles.list} key={i}>
               <View style={styles.lists} />
               <Text style={[styles.text, {color: textColor}]}>
-                {item.length > 27 ? item.slice(0, 27) + '..' : item}
+                {item.todo.length > 27
+                  ? item.todo.slice(0, 27) + '..'
+                  : item.todo}
               </Text>
             </View>
           ))}

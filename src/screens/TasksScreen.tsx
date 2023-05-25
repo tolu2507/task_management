@@ -6,15 +6,18 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import TextWrapper from '../components/TextWrapper';
 import PeopleGroupComponent from '../components/PeopleGroupComponent';
 import {DATAITEMS} from '../data/data';
 import Title from '../components/Title';
+import {ManagementContext} from '../store/context';
 
 const TasksScreen = ({route, navigation}: any) => {
   const {item}: {item: DATAITEMS} = route.params;
   const [click, setClick] = useState(false);
+  const taskCtx = useContext(ManagementContext);
+  const details: DATAITEMS = {...item, started: item.started ? false : true};
 
   const clickStyle = {
     maxHeight: '100%',
@@ -31,7 +34,12 @@ const TasksScreen = ({route, navigation}: any) => {
     return navigation.goBack();
   }
   function handleClick() {
-    console.log('pressed');
+    if (
+      taskCtx.onGoing.findIndex((elemnet: any) => elemnet.id === details.id) !== -1
+    ) {
+      return taskCtx.removeDailyTask(details.id);
+    }
+    return taskCtx.addDailyTask(details, details.id);
   }
 
   return (
@@ -40,18 +48,21 @@ const TasksScreen = ({route, navigation}: any) => {
 
       <ImageBackground
         source={require('../../assets/pic7.png')}
-        style={styles.image}>
+        style={styles.image}
+      >
         <View style={styles.headerBottom}>
           {/* header view with icons and text */}
+
           <Title
             style={styles.title}
             color={styles.iconColor}
             icon1="arrow-back"
-            icon2="dots-horizontal"
+            icon2={item.started === false ? 'dots-horizontal' : 'delete'}
             name="Task details"
             press1={handlePress}
             press2={handleClick}
           />
+
           {/* header content view  */}
           <View style={styles.content}>
             <TextWrapper text={'Task Title'}>
@@ -60,7 +71,10 @@ const TasksScreen = ({route, navigation}: any) => {
             <TextWrapper text={'Colleagues'}>
               <View>
                 {item.people.map(person => (
-                  <PeopleGroupComponent peopleItem={person} />
+                  <PeopleGroupComponent
+                    peopleItem={person}
+                    key={person.margin}
+                  />
                 ))}
               </View>
             </TextWrapper>
@@ -90,15 +104,17 @@ const TasksScreen = ({route, navigation}: any) => {
 
         <TextWrapper text={'Files and Links'} style={styles.file}>
           <View style={styles.squareContainer}>
-            {files.map(items => items && <View style={styles.square} />)}
+            {files.map(
+              (items, i) => items && <View style={styles.square} key={i} />,
+            )}
           </View>
         </TextWrapper>
 
         <TextWrapper text={'Task'} secondText="Add new task">
-          {item.todo.map(todo => (
-            <View style={styles.list}>
-              <View style={styles.lists} />
-              <Text style={styles.text}>{todo}</Text>
+          {item.todos.map((todo, i) => (
+            <View style={styles.list} key={i}>
+              <View style={[styles.lists, todo.complete && styles.greens]} />
+              <Text style={styles.text}>{todo.todo}</Text>
             </View>
           ))}
         </TextWrapper>
@@ -110,6 +126,7 @@ const TasksScreen = ({route, navigation}: any) => {
 export default TasksScreen;
 
 const styles = StyleSheet.create({
+  greens: {backgroundColor: 'green'},
   scroll: {
     flex: 1,
   },

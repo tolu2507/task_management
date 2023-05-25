@@ -13,11 +13,7 @@ import {DATAITEMS, People} from '../data/data';
 import useImage, {generateRandomId} from '../hooks/image';
 import {ManagementContext} from '../store/context';
 
-export default function ModalComponent({
-  modal,
-  handlePress,
-  navigation,
-}: MODAL) {
+export default function ModalComponent({modal, handlePress}: MODAL) {
   const Modalctx = useContext(ManagementContext);
   const [calender, setCalender] = useState<string>(formatDate(new Date()));
   const [cal, setCal] = useState<boolean>(false);
@@ -26,7 +22,7 @@ export default function ModalComponent({
   const [attachments, setAttachments] = useState<string>('');
   const [attachment, setAttachment] = useState<string[]>([]);
   const [todo, setTodo] = useState<string>('');
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<{todo: string; complete: boolean}[]>([]);
   const [end] = useState<string>('');
   const [people, setPeople] = useState<string>('');
   const [peoples, setPeoples] = useState<People[]>([]);
@@ -63,7 +59,7 @@ export default function ModalComponent({
     console.log(type);
     if (type) {
       if (type === 'todo' && todo !== '') {
-        setTodos(prev => [todo, ...prev]);
+        setTodos(prev => [{todo: todo, complete: false}, ...prev]);
         return setTodo('');
       }
       if (type === 'files' && files !== '') {
@@ -112,14 +108,14 @@ export default function ModalComponent({
         time: startTime,
         endTime: endTime,
         endDate: end,
-        todo: todos,
+        todos: todos,
         people: peoples,
         files: file,
         attachments: attachment,
       };
       add(details);
-      handlePress();
-      return navigation.goBack();
+      return handlePress();
+      // return navigation.goBack();
     }
     return;
   }
@@ -266,7 +262,6 @@ export default function ModalComponent({
 interface MODAL {
   modal: boolean;
   handlePress: () => void;
-  navigation: any;
 }
 
 const styles = StyleSheet.create({

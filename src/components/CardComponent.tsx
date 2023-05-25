@@ -16,9 +16,9 @@ export function CardComponent({
 }) {
   const {navigate} = navigation;
 
-  const {image, Title, attachments, date, people, todo, files} = item;
+  const {image, Title, attachments, date, people, todos, files} = item;
 
-  const todos = [todo[0], todo[1]];
+  const todo = [todos[0], todos[1]];
 
   function handlePress() {
     navigate('Task', {item: item});
@@ -40,16 +40,20 @@ export function CardComponent({
               style={styles.fontSize}
             />
             <View style={styles.textView}>
-              {Array.isArray(todos) &&
-                todos.map(text => <Text style={styles.text}>{text}</Text>)}
+              {Array.isArray(todo) &&
+                todo.map((text, i) => (
+                  <Text style={styles.text} key={i}>
+                    {text.todo}
+                  </Text>
+                ))}
             </View>
           </View>
           <View style={styles.textViews}>
             {/* right */}
             <View style={styles.smallView}>
               {/* group people */}
-              {people.map(peopleItem => (
-                <PeopleGroupComponent peopleItem={peopleItem} />
+              {people.map((peopleItem, i) => (
+                <PeopleGroupComponent peopleItem={peopleItem} key={i} />
               ))}
             </View>
 

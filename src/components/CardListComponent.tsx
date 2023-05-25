@@ -2,13 +2,25 @@
 import React from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '../utils/Icon';
+import {DATAITEMS} from '../data/data';
 
-export function CardListComponent({item}: any) {
-  console.log(item);
-  const {Title, todo} = item;
+export function CardListComponent({
+  item,
+  navigation,
+}: {
+  item: DATAITEMS;
+  navigation: any;
+}) {
+  const {Title, todos} = item;
+  const {navigate} = navigation;
+  function handlePress() {
+    navigate('Task', {item: item});
+  }
   return (
     <View style={styles.contain}>
-      <Pressable style={({pressed}) => pressed && styles.pressed}>
+      <Pressable
+        style={({pressed}) => pressed && styles.pressed}
+        onPress={handlePress}>
         <View style={styles.card}>
           <View style={styles.imageContainer}>
             <View style={styles.image}>
@@ -20,10 +32,12 @@ export function CardListComponent({item}: any) {
               {Title.length > 30 ? Title.slice(0, 25) + '......' : Title}
             </Text>
             <View style={styles.todo}>
-              {todo.map((items: string) => (
-                <View style={styles.textView}>
-                  <View style={styles.smallCircle} />
-                  <Text style={styles.texts}>{items}</Text>
+              {todos.map((items: {todo: string; complete: boolean}, i: any) => (
+                <View style={styles.textView} key={i}>
+                  <View
+                    style={[styles.smallCircle, items.complete && styles.green]}
+                  />
+                  <Text style={styles.texts}>{items.todo}</Text>
                 </View>
               ))}
             </View>
@@ -35,6 +49,7 @@ export function CardListComponent({item}: any) {
 }
 
 const styles = StyleSheet.create({
+  green: {backgroundColor: 'green'},
   card: {
     height: 120,
     padding: 15,

@@ -14,6 +14,6 @@ export function generateRandomId() {
     const randomIdx = Math.floor(Math.random() * characters.length);
     randomId += characters[randomIdx];
   }
-
-  return randomId;
+  console.log(randomId && randomId);
+  return randomId && randomId;
 }

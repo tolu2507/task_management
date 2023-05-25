@@ -102,14 +102,14 @@ export default function Calendar() {
   const daysAndDate: DAY[] = createObject(days);
   return (
     <View style={styles.container}>
-      {daysAndDate.map(({date, day}) => {
+      {daysAndDate.map(({date, day}, i) => {
         return days.current.slice(-2) === date ? (
-          <View style={[styles.calendar, styles.selected]}>
+          <View style={[styles.calendar, styles.selected]} key={i}>
             <Text style={[styles.text, styles.selectedText]}>{day}</Text>
             <Text style={[styles.text, styles.selectedText]}>{date}</Text>
           </View>
         ) : (
-          <View style={styles.calendar}>
+          <View style={styles.calendar} key={i}>
             <Text style={styles.text}>{day}</Text>
             <Text style={styles.text}>{date}</Text>
           </View>

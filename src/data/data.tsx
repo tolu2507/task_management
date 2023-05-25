@@ -23,12 +23,13 @@ export interface DATAITEMS {
   description: string;
   date: string;
   time: string;
-  endTime?: string;
-  endDate?: string;
-  todo: string[];
+  endTime: string;
+  endDate: string;
+  todos: {todo: string; complete: boolean}[];
   people: People[];
   files: string[];
   attachments: string[];
+  started: boolean;
 }
 
 export const dataItems: DATAITEMS[] = [
@@ -38,11 +39,13 @@ export const dataItems: DATAITEMS[] = [
     Title: 'creating website Design and Development',
     description:
       'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
-    date: '19 june 2022',
+    date: 'Thursday, May 25',
     time: '12:00',
-    todo: [
-      'Create a website for job search',
-      'Deadline 3 weeks starting august',
+    endDate: '',
+    endTime: '',
+    todos: [
+      {todo: 'Create a website for job search', complete: true},
+      {todo: 'Deadline 3 weeks starting august', complete: false},
     ],
     people: [
       {image: require('../../assets/pic4.png'), margin: 0, name: ''},
@@ -69,158 +72,7 @@ export const dataItems: DATAITEMS[] = [
       'y',
       'y',
     ],
-  },
-  {
-    id: '2',
-    image: require('../../assets/pic4.png'),
-    Title: 'creating website Design and Development',
-    description:
-      'this is the description section it can be as long as i please.',
-    date: '19 june 2022',
-    time: '13:00',
-    todo: [
-      'Create a website for job search',
-      'Deadline 3 weeks starting august',
-    ],
-    people: [
-      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
-    ],
-    files: ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'],
-    attachments: [
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-    ],
-  },
-  {
-    id: '3',
-    image: require('../../assets/pic4.png'),
-    Title: 'creating website Design and Development',
-    description:
-      'this is the description section it can be as long as i please.',
-    date: '19 june 2022',
-    time: '15:00',
-    todo: [
-      'Create a website for job search',
-      'Deadline 3 weeks starting august',
-    ],
-    people: [
-      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
-    ],
-    files: ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'],
-    attachments: [
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-    ],
-  },
-  {
-    id: '4',
-    image: require('../../assets/pic4.png'),
-    Title: 'creating website Design and Development',
-    description:
-      'this is the description section it can be as long as i please.',
-    date: '19 june 2022',
-    time: '15:00',
-    todo: [
-      'Create a website for job search',
-      'Deadline 3 weeks starting august',
-    ],
-    people: [
-      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
-    ],
-    files: ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'],
-    attachments: [
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-    ],
-  },
-  {
-    id: '5',
-    image: require('../../assets/pic4.png'),
-    Title: 'creating website Design and Development',
-    description:
-      'this is the description section it can be as long as i please.',
-    date: '19 june 2022',
-    time: '15:00',
-    todo: [
-      'Create a website for job search',
-      'Deadline 3 weeks starting august',
-    ],
-    people: [
-      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
-      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
-    ],
-    files: ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'],
-    attachments: [
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-      'y',
-    ],
+    started: false,
   },
 ];
 

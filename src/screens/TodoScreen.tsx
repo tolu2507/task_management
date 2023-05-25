@@ -33,7 +33,6 @@ const TodoScreen = ({navigation}: TODO) => {
       <ModalComponent
         modal={modal}
         handlePress={handlePress}
-        navigation={navigation}
       />
     );
   }
