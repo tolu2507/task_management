@@ -47,7 +47,7 @@ const HomeScreen = ({navigation}: any) => {
             smalltext={'View All'}
           />
           {/* card horizontal view */}
-          <View>
+          <View style={styles.scroll}>
             {/* card view */}
             {Todoctx.data.map((item: DATAITEMS) => (
               <CardListComponent item={item} key={item.id} />
@@ -62,6 +62,10 @@ const HomeScreen = ({navigation}: any) => {
 export default HomeScreen;
 
 export const styles = StyleSheet.create({
+  scroll: {
+    marginBottom: 50,
+    flex: 1,
+  },
   contain: {
     flex: 1,
     padding: 10,

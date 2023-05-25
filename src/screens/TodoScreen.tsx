@@ -16,10 +16,6 @@ const TodoScreen = ({navigation}: TODO) => {
   const Todoctx = useContext(ManagementContext);
   const data = Todoctx.data;
 
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
-
   function handlePress() {
     console.log('pressing');
     setModal(!modal);
