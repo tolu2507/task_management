@@ -1,6 +1,12 @@
 /* eslint-disable prettier/prettier */
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from 'react-native';
+import React, {useState} from 'react';
 import TextWrapper from '../components/TextWrapper';
 import PeopleGroupComponent from '../components/PeopleGroupComponent';
 import {DATAITEMS} from '../data/data';
@@ -8,12 +14,24 @@ import Title from '../components/Title';
 
 const TasksScreen = ({route, navigation}: any) => {
   const {item}: {item: DATAITEMS} = route.params;
+  const [click, setClick] = useState(false);
+
+  const clickStyle = {
+    maxHeight: '100%',
+  };
 
   let files = [];
   if (item.files.length >= 4) {
     files = [item.files[0], item.files[1], item.files[2], item.files[3]];
   } else {
     files = [...item.files];
+  }
+
+  function handlePress() {
+    return navigation.goBack();
+  }
+  function handleClick() {
+    console.log('pressed');
   }
 
   return (
@@ -26,12 +44,13 @@ const TasksScreen = ({route, navigation}: any) => {
         <View style={styles.headerBottom}>
           {/* header view with icons and text */}
           <Title
-            navigation={navigation}
             style={styles.title}
             color={styles.iconColor}
             icon1="arrow-back"
             icon2="dots-horizontal"
             name="Task details"
+            press1={handlePress}
+            press2={handleClick}
           />
           {/* header content view  */}
           <View style={styles.content}>
@@ -50,9 +69,23 @@ const TasksScreen = ({route, navigation}: any) => {
       </ImageBackground>
 
       {/* bottom section, */}
-      <View style={styles.bottomView}>
-        <TextWrapper text={'Project Description'}>
-          <Text style={styles.text}>{item.description}</Text>
+      <ScrollView style={styles.bottomView}>
+        <TextWrapper text={'Project Description'} childrenStyle={clickStyle}>
+          {click === false && item.description.length > 200 ? (
+            <Text style={styles.text}>
+              {item.description.slice(0, 200) + '...'}
+              <Text style={styles.green} onPress={() => setClick(!click)}>
+                Read more
+              </Text>
+            </Text>
+          ) : (
+            <Text style={styles.text}>
+              {item.description}
+              <Text style={styles.green} onPress={() => setClick(!click)}>
+                Less
+              </Text>
+            </Text>
+          )}
         </TextWrapper>
 
         <TextWrapper text={'Files and Links'} style={styles.file}>
@@ -69,7 +102,7 @@ const TasksScreen = ({route, navigation}: any) => {
             </View>
           ))}
         </TextWrapper>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -77,6 +110,23 @@ const TasksScreen = ({route, navigation}: any) => {
 export default TasksScreen;
 
 const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+  },
+  texts: {
+    height: 10,
+    overflow: 'hidden',
+    borderWidth: 1,
+  },
+  greenButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  green: {
+    color: 'green',
+    fontSize: 20,
+    fontWeight: '500',
+  },
   iconColor: {
     color: '#fbfbfb',
   },

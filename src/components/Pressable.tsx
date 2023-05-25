@@ -6,13 +6,19 @@ export default function ButtonComponent({
   children,
   style,
   onPress,
+  disabled,
 }: {
   children: any;
   style: {};
   onPress: () => void;
+  disabled?: boolean;
 }) {
   return (
-    <Pressable style={({pressed}) => pressed && style} onPress={onPress}>
+    <Pressable
+      disabled={disabled ? disabled : false}
+      style={({pressed}) => pressed && style}
+      onPress={onPress}
+      android_ripple={{color: 'white'}}>
       {children}
     </Pressable>
   );

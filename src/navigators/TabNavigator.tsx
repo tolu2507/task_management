@@ -17,7 +17,7 @@ function TabScreen() {
         tabBarStyle: {
           backgroundColor: 'black',
           position: 'absolute',
-          padding: 20,
+          padding: 10,
         },
       }}>
       {TabsArray.map(({name, component, icon,id}) => (

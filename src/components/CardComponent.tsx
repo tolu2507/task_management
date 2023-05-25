@@ -14,10 +14,11 @@ export function CardComponent({
   item: DATAITEMS;
   navigation: any;
 }) {
-  console.log(item);
   const {navigate} = navigation;
 
   const {image, Title, attachments, date, people, todo, files} = item;
+
+  const todos = [todo[0], todo[1]];
 
   function handlePress() {
     navigate('Task', {item: item});
@@ -34,12 +35,13 @@ export function CardComponent({
           </View>
           <View>
             <DescriptionComponent
-              text={Title.length > 15 ? Title.slice(0, 16) + '...' : Title}
+              text={Title.length > 25 ? Title.slice(0, 25) + '...' : Title}
               smalltext={date}
               style={styles.fontSize}
             />
             <View style={styles.textView}>
-              {Array.isArray(todo) && todo.map(text => <Text style={styles.text}>{text}</Text>)}
+              {Array.isArray(todos) &&
+                todos.map(text => <Text style={styles.text}>{text}</Text>)}
             </View>
           </View>
           <View style={styles.textViews}>
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     textAlign: 'flex-start',
   },
   text: {
-    color:'black'
+    color: 'black',
   },
   textViews: {
     padding: 2,

@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {createContext, useState} from 'react';
 import {dataItems, Person} from '../data/data';
 
 export const ManagementContext = createContext({
   data: [],
-  person: {image:'',name:''},
+  person: {image: '', name: ''},
   add: data => {},
   remove: id => {},
 });

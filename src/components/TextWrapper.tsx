@@ -8,11 +8,13 @@ const TextWrapper = ({
   text,
   secondText,
   style,
+  childrenStyle,
 }: {
   children: any;
   text: string;
   secondText?: string;
   style?: {};
+  childrenStyle?: any;
 }) => {
   return (
     <View style={[style]}>
@@ -22,7 +24,7 @@ const TextWrapper = ({
         style={styles.text}
         style2={styles.text1}
       />
-      <View style={styles.viewContainer}>{children}</View>
+      <View style={[styles.viewContainer, childrenStyle]}>{children}</View>
     </View>
   );
 };
