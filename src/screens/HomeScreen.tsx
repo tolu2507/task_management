@@ -8,9 +8,14 @@ import {CardComponent} from '../components/CardComponent';
 import {CardListComponent} from '../components/CardListComponent';
 import {ManagementContext} from '../store/context';
 import {DATAITEMS} from '../data/data';
+import {useGetWeekRange} from '../hooks/week';
 
 const HomeScreen = ({navigation}: any) => {
+  const currentDate = useGetWeekRange().today;
   const Todoctx = useContext(ManagementContext);
+  const tasks = Todoctx.data.filter(
+    (item: DATAITEMS) => item.date === currentDate,
+  );
 
   return (
     <View style={styles.contain}>
@@ -18,13 +23,19 @@ const HomeScreen = ({navigation}: any) => {
       <HeaderComponent />
       {/* search view */}
       <View style={styles.search}>
-        <SearchComponent />
+        <SearchComponent routeName={'Task'} navigation={navigation} />
       </View>
 
       <ScrollView>
         <View>
           {/* description */}
-          <DescriptionComponent text={'On going task'} smalltext={'View All'} />
+          <DescriptionComponent
+            text={'On going task'}
+            smalltext={'View All'}
+            onPress={() =>
+              navigation.navigate('ViewAll', {data: Todoctx.onGoing})
+            }
+          />
           {/* card horizontal view */}
           <View style={styles.card}>
             {/* card view */}
@@ -45,11 +56,12 @@ const HomeScreen = ({navigation}: any) => {
           <DescriptionComponent
             text={'Daily Activity'}
             smalltext={'View All'}
+            onPress={() => navigation.navigate('ViewAll', {data: tasks})}
           />
           {/* card horizontal view */}
           <View style={styles.scroll}>
             {/* card view */}
-            {Todoctx.dailyActivities.map((item: DATAITEMS) => (
+            {tasks.map((item: DATAITEMS) => (
               <CardListComponent
                 item={item}
                 key={item.id}
@@ -77,7 +89,7 @@ export const styles = StyleSheet.create({
   },
   search: {
     backgroundColor: '#fcf9f9',
-    height: 60,
+    // minHeight: 60,
     marginHorizontal: 5,
     marginVertical: 20,
     alignItems: 'center',

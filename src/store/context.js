@@ -7,7 +7,6 @@ import {useGetWeekRange} from '../hooks/week';
 export const ManagementContext = createContext({
   data: [],
   onGoing: [],
-  dailyActivities: [],
   person: {image: '', name: ''},
   add: data => {},
   remove: id => {},
@@ -18,8 +17,6 @@ export const ManagementContext = createContext({
 export function TaskContextProvider({children}) {
   const [manageTasks, setManageTasks] = useState(dataItems);
   const [daily, setDaily] = useState([]);
-  const currentDate = useGetWeekRange().today;
-  const [tasks] = useState(dataItems.filter(item => item.date === currentDate));
 
   function addToTask(task) {
     setManageTasks(prevTask => [...prevTask, task]);
@@ -44,7 +41,6 @@ export function TaskContextProvider({children}) {
   const values = {
     data: manageTasks,
     onGoing: daily,
-    dailyActivities: tasks,
     person: Person,
     add: addToTask,
     remove: removeFromTask,

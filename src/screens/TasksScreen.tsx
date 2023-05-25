@@ -16,6 +16,7 @@ import {ManagementContext} from '../store/context';
 const TasksScreen = ({route, navigation}: any) => {
   const {item}: {item: DATAITEMS} = route.params;
   const [click, setClick] = useState(false);
+  const [icon, setIcon] = useState(false);
   const taskCtx = useContext(ManagementContext);
   const details: DATAITEMS = {...item, started: item.started ? false : true};
 
@@ -34,12 +35,21 @@ const TasksScreen = ({route, navigation}: any) => {
     return navigation.goBack();
   }
   function handleClick() {
+    setIcon(!icon);
     if (
-      taskCtx.onGoing.findIndex((elemnet: any) => elemnet.id === details.id) !== -1
+      taskCtx.onGoing.findIndex(
+        (elemnet: DATAITEMS) => elemnet.id === details.id,
+      ) !== -1
     ) {
       return taskCtx.removeDailyTask(details.id);
     }
     return taskCtx.addDailyTask(details, details.id);
+  }
+  let returner;
+  if (icon) {
+    returner = {
+      color: '#a14545',
+    };
   }
 
   return (
@@ -48,14 +58,13 @@ const TasksScreen = ({route, navigation}: any) => {
 
       <ImageBackground
         source={require('../../assets/pic7.png')}
-        style={styles.image}
-      >
+        style={styles.image}>
         <View style={styles.headerBottom}>
           {/* header view with icons and text */}
 
           <Title
             style={styles.title}
-            color={styles.iconColor}
+            color={[styles.iconColor, returner]}
             icon1="arrow-back"
             icon2={item.started === false ? 'dots-horizontal' : 'delete'}
             name="Task details"
@@ -65,10 +74,16 @@ const TasksScreen = ({route, navigation}: any) => {
 
           {/* header content view  */}
           <View style={styles.content}>
-            <TextWrapper text={'Task Title'}>
+            <TextWrapper
+              text={'Task Title'}
+              navigation={navigation}
+              data={taskCtx.data}>
               <Text style={[styles.text, styles.title]}>{item.Title}</Text>
             </TextWrapper>
-            <TextWrapper text={'Colleagues'}>
+            <TextWrapper
+              text={'Colleagues'}
+              navigation={navigation}
+              data={taskCtx.data}>
               <View>
                 {item.people.map(person => (
                   <PeopleGroupComponent
@@ -84,7 +99,11 @@ const TasksScreen = ({route, navigation}: any) => {
 
       {/* bottom section, */}
       <ScrollView style={styles.bottomView}>
-        <TextWrapper text={'Project Description'} childrenStyle={clickStyle}>
+        <TextWrapper
+          text={'Project Description'}
+          childrenStyle={clickStyle}
+          navigation={navigation}
+          data={taskCtx.data}>
           {click === false && item.description.length > 200 ? (
             <Text style={styles.text}>
               {item.description.slice(0, 200) + '...'}
@@ -102,7 +121,11 @@ const TasksScreen = ({route, navigation}: any) => {
           )}
         </TextWrapper>
 
-        <TextWrapper text={'Files and Links'} style={styles.file}>
+        <TextWrapper
+          text={'Files and Links'}
+          style={styles.file}
+          navigation={navigation}
+          data={taskCtx.data}>
           <View style={styles.squareContainer}>
             {files.map(
               (items, i) => items && <View style={styles.square} key={i} />,
@@ -110,7 +133,11 @@ const TasksScreen = ({route, navigation}: any) => {
           </View>
         </TextWrapper>
 
-        <TextWrapper text={'Task'} secondText="Add new task">
+        <TextWrapper
+          text={'Task'}
+          secondText="Add new task"
+          navigation={navigation}
+          data={taskCtx.data}>
           {item.todos.map((todo, i) => (
             <View style={styles.list} key={i}>
               <View style={[styles.lists, todo.complete && styles.greens]} />
@@ -146,6 +173,9 @@ const styles = StyleSheet.create({
   },
   iconColor: {
     color: '#fbfbfb',
+  },
+  iconColors: {
+    color: '#a14545',
   },
   pressed: {
     backgroundColor: '#86e683',

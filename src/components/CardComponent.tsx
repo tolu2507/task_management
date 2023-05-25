@@ -38,12 +38,15 @@ export function CardComponent({
               text={Title.length > 25 ? Title.slice(0, 25) + '...' : Title}
               smalltext={date}
               style={styles.fontSize}
+              onPress={() =>
+                navigation.navigate('ViewAll', {data: todos})
+              }
             />
             <View style={styles.textView}>
               {Array.isArray(todo) &&
                 todo.map((text, i) => (
                   <Text style={styles.text} key={i}>
-                    {text.todo}
+                    {text?.todo}
                   </Text>
                 ))}
             </View>

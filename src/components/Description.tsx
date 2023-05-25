@@ -2,11 +2,19 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-export function DescriptionComponent({text, smalltext,style, style2}: Description) {
+export function DescriptionComponent({
+  text,
+  smalltext,
+  style,
+  style2,
+  onPress,
+}: Description) {
   return (
     <View style={styles.headerText}>
-      <Text style={[styles.text1,style]}>{text}</Text>
-      <Text style={[styles.text2,style2]}>{smalltext}</Text>
+      <Text style={[styles.text1, style]}>{text}</Text>
+      <Text style={[styles.text2, style2]} onPress={onPress}>
+        {smalltext}
+      </Text>
     </View>
   );
 }
@@ -14,7 +22,8 @@ interface Description {
   text: string;
   smalltext?: string;
   style?: {};
-  style2?:{}
+  style2?: {};
+  onPress: () => void;
 }
 
 const styles = StyleSheet.create({

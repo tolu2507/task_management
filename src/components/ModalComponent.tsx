@@ -13,7 +13,11 @@ import {DATAITEMS, People} from '../data/data';
 import useImage, {generateRandomId} from '../hooks/image';
 import {ManagementContext} from '../store/context';
 
-export default function ModalComponent({modal, handlePress}: MODAL) {
+export default function ModalComponent({
+  modal,
+  handlePress,
+  navigation,
+}: MODAL) {
   const Modalctx = useContext(ManagementContext);
   const [calender, setCalender] = useState<string>(formatDate(new Date()));
   const [cal, setCal] = useState<boolean>(false);
@@ -112,6 +116,7 @@ export default function ModalComponent({modal, handlePress}: MODAL) {
         people: peoples,
         files: file,
         attachments: attachment,
+        started: false,
       };
       add(details);
       return handlePress();
@@ -151,7 +156,10 @@ export default function ModalComponent({modal, handlePress}: MODAL) {
           />
         </View>
         <ScrollView style={styles.scroll}>
-          <TextWrapper text={'Title and Description'}>
+          <TextWrapper
+            text={'Title and Description'}
+            navigation={navigation}
+            data={[]}>
             <View style={styles.inputView}>
               <TextInput
                 placeholder="Enter title....."
@@ -172,7 +180,7 @@ export default function ModalComponent({modal, handlePress}: MODAL) {
               </View>
             </View>
           </TextWrapper>
-          <TextWrapper text="Execution time">
+          <TextWrapper text="Execution time" navigation={navigation} data={[]}>
             <View style={styles.inputView}>
               <View style={styles.dateTime}>
                 <View style={styles.date}>
@@ -226,7 +234,11 @@ export default function ModalComponent({modal, handlePress}: MODAL) {
             </View>
           </TextWrapper>
           {items.map(({name, key, value, setter}) => (
-            <TextWrapper text={name} key={key}>
+            <TextWrapper
+              text={name}
+              key={key}
+              navigation={navigation}
+              data={[]}>
               <View style={styles.inputView}>
                 <View style={styles.dateTime}>
                   <View style={styles.timess}>
@@ -262,6 +274,7 @@ export default function ModalComponent({modal, handlePress}: MODAL) {
 interface MODAL {
   modal: boolean;
   handlePress: () => void;
+  navigation: any;
 }
 
 const styles = StyleSheet.create({

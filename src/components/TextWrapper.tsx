@@ -2,6 +2,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {DescriptionComponent} from './Description';
+import {DATAITEMS} from '../data/data';
 
 const TextWrapper = ({
   children,
@@ -9,12 +10,16 @@ const TextWrapper = ({
   secondText,
   style,
   childrenStyle,
+  navigation,
+  data,
 }: {
   children: any;
   text: string;
   secondText?: string;
   style?: {};
   childrenStyle?: any;
+  navigation: any;
+  data: DATAITEMS[];
 }) => {
   return (
     <View style={[style]}>
@@ -23,6 +28,7 @@ const TextWrapper = ({
         smalltext={secondText ? secondText : ''}
         style={styles.text}
         style2={styles.text1}
+        onPress={() => navigation.navigate('ViewAll', {data: data})}
       />
       <View style={[styles.viewContainer, childrenStyle]}>{children}</View>
     </View>
