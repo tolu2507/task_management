@@ -1,33 +1,48 @@
 /* eslint-disable prettier/prettier */
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import React, {useLayoutEffect} from 'react';
 import {DATAITEMS} from '../data/data';
+import {CardListComponent} from '../components/CardListComponent';
+import {SearchComponent} from '../components/Search';
 
 const AllScreen = ({navigation, route}: any) => {
-  const {data, name}: {data: DATAITEMS; name: string} = route.params;
+  const {data, name}: {data: DATAITEMS[]; name: string} = route.params;
   useLayoutEffect(() => {
-    console.log(data);
-    console.log('====================================');
     return navigation.setOptions({title: name});
   });
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>AllScreen</Text>
-    </View>
+    <>
+      <View style={styles.search}>
+        <SearchComponent
+          routeName={'Task'}
+          navigation={navigation}
+          data={data}
+        />
+      </View>
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
+          <CardListComponent
+            item={item}
+            key={item.id}
+            navigation={navigation}
+          />
+        )}
+      />
+    </>
   );
 };
 
 export default AllScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  search: {
+    backgroundColor: '#fcf9f9',
+    // minHeight: 60,
+    marginHorizontal: 5,
+    marginVertical: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  text: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: '700',
+    borderRadius: 20,
   },
 });

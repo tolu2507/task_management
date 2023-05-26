@@ -56,6 +56,9 @@ export default function ModalComponent({
   function handlePressButon() {
     setCal(!cal);
   }
+  function handleClickItem() {
+    return navigation.navigate('ViewAll', {data: []});
+  }
 
   function handlePressButton(
     type: 'todo' | 'attachments' | 'files' | 'people',
@@ -119,6 +122,9 @@ export default function ModalComponent({
         started: false,
       };
       add(details);
+      console.log('====================================');
+      console.log(details);
+      console.log('====================================');
       return handlePress();
       // return navigation.goBack();
     }
@@ -156,10 +162,7 @@ export default function ModalComponent({
           />
         </View>
         <ScrollView style={styles.scroll}>
-          <TextWrapper
-            text={'Title and Description'}
-            navigation={navigation}
-            data={[]}>
+          <TextWrapper text={'Title and Description'} onPress={handleClickItem}>
             <View style={styles.inputView}>
               <TextInput
                 placeholder="Enter title....."
@@ -180,7 +183,7 @@ export default function ModalComponent({
               </View>
             </View>
           </TextWrapper>
-          <TextWrapper text="Execution time" navigation={navigation} data={[]}>
+          <TextWrapper text="Execution time" onPress={handleClickItem}>
             <View style={styles.inputView}>
               <View style={styles.dateTime}>
                 <View style={styles.date}>
@@ -234,11 +237,7 @@ export default function ModalComponent({
             </View>
           </TextWrapper>
           {items.map(({name, key, value, setter}) => (
-            <TextWrapper
-              text={name}
-              key={key}
-              navigation={navigation}
-              data={[]}>
+            <TextWrapper text={name} key={key} onPress={handleClickItem}>
               <View style={styles.inputView}>
                 <View style={styles.dateTime}>
                   <View style={styles.timess}>
@@ -277,7 +276,7 @@ interface MODAL {
   navigation: any;
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   b: {fontSize: 20, color: 'black'},
   scroll: {marginBottom: 120},
   button: {

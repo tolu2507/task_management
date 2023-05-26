@@ -1,15 +1,13 @@
 /* eslint-disable prettier/prettier */
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {TextInput, View, Text, StyleSheet, Pressable} from 'react-native';
 import {OctiIcon} from '../utils/Icon';
-import {ManagementContext} from '../store/context';
-import {DATAITEMS} from '../data/data';
+import {DATAITEMS, NOTIFICATIONITEMS} from '../data/data';
 
-export function SearchComponent({routeName, navigation}: SEARCH) {
+export function SearchComponent({routeName, navigation, data}: SEARCH) {
   const [value, setValue] = useState('');
-  const searchCtx = useContext(ManagementContext).data;
 
-  function handlePress(item: DATAITEMS) {
+  function handlePress(item: DATAITEMS | NOTIFICATIONITEMS) {
     navigation.navigate(routeName, {item: item});
   }
 
@@ -27,7 +25,7 @@ export function SearchComponent({routeName, navigation}: SEARCH) {
         />
       </View>
       <View style={styles.textContainers}>
-        {searchCtx.map((search: DATAITEMS, i) => {
+        {data.map((search: DATAITEMS | NOTIFICATIONITEMS, i) => {
           if (value.toLowerCase() === '') {
             return;
           }
@@ -47,8 +45,9 @@ export function SearchComponent({routeName, navigation}: SEARCH) {
   );
 }
 interface SEARCH {
-  routeName: 'Task';
+  routeName: 'Task' | 'Card';
   navigation: any;
+  data: any[];
 }
 
 const styles = StyleSheet.create({

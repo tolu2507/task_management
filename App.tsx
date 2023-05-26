@@ -12,6 +12,7 @@ import TabScreen from './src/navigators/TabNavigator';
 import {TaskContextProvider} from './src/store/context';
 import TasksScreen from './src/screens/TasksScreen';
 import AllScreen from './src/screens/AllScreen';
+import CardDetailsScreen from './src/screens/CardDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
@@ -29,6 +30,7 @@ function App(): JSX.Element {
             component={TasksScreen}
             options={{headerShown: false}}
           />
+          <Stack.Screen name="Card" component={CardDetailsScreen} />
           <Stack.Screen name="ViewAll" component={AllScreen} />
         </Stack.Navigator>
       </NavigationContainer>

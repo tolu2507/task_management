@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   pressed: {
     backgroundColor: '#86e683',
     borderRadius: 25,
+    pqdding: 10,
   },
   text: {
     color: 'black',

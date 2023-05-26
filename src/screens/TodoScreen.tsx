@@ -51,7 +51,7 @@ const TodoScreen = ({navigation}: TODO) => {
             press1={handleBack}
             press2={handleClick}
           />
-          <TextWrapper text={'Today'} navigation={navigation} data={data}>
+          <TextWrapper text={'Today'} onPress={() => console.log('pressed')}>
             <Text style={[styles.text, styles.title]}>{currentDate.today}</Text>
           </TextWrapper>
           <Calendar />

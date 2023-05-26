@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useContext} from 'react';
+import React, {useContext, useLayoutEffect, useState} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {HeaderComponent} from '../components/Header.component';
 import {SearchComponent} from '../components/Search';
@@ -13,17 +13,26 @@ import {useGetWeekRange} from '../hooks/week';
 const HomeScreen = ({navigation}: any) => {
   const currentDate = useGetWeekRange().today;
   const Todoctx = useContext(ManagementContext);
-  const tasks = Todoctx.data.filter(
-    (item: DATAITEMS) => item.date === currentDate,
-  );
+  const [tasks, setTask] = useState([]);
 
+  useLayoutEffect(() => {
+    if (Todoctx) {
+      return setTask(
+        Todoctx.data.filter((item: DATAITEMS) => item.date === currentDate),
+      );
+    }
+  }, [Todoctx, currentDate]);
   return (
     <View style={styles.contain}>
       {/* top section with image and icon */}
       <HeaderComponent />
       {/* search view */}
       <View style={styles.search}>
-        <SearchComponent routeName={'Task'} navigation={navigation} />
+        <SearchComponent
+          routeName={'Task'}
+          navigation={navigation}
+          data={Todoctx.data}
+        />
       </View>
 
       <ScrollView>

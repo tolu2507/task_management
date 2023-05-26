@@ -39,7 +39,7 @@ export const dataItems: DATAITEMS[] = [
     Title: 'creating website Design and Development',
     description:
       'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
-    date: 'Thursday, May 25',
+    date: 'Friday, May 26',
     time: '12:00',
     endDate: '',
     endTime: '',
@@ -119,3 +119,157 @@ export const Person: People = {
   name: 'Bamisile Tolulope',
 };
 export default TabsArray;
+
+export interface NOTIFICATIONITEMS {
+  id: string;
+  name: string;
+  image: any;
+  Title: string;
+  description: string;
+  date: string;
+  people: People[];
+  comment: {name: string; comments: string; image: any}[];
+}
+
+export const notifications: NOTIFICATIONITEMS[] = [
+  {
+    id: '1',
+    name: 'ADEBAYO',
+    image: require('../../assets/pic4.png'),
+    Title: 'creating website Design and Development',
+    description:
+      'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
+    date: 'Friday, May 26',
+    people: [
+      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
+    ],
+    comment: [
+      {
+        name: 'ADEBAYO',
+        comments: 'done with this',
+        image: require('../../assets/pic4.png'),
+      },
+      {
+        name: 'tolu',
+        comments: 'done with this today',
+        image: require('../../assets/pic.png'),
+      },
+    ],
+  },
+  {
+    id: '2',
+    name: 'Jude Oyekola',
+    image: require('../../assets/pic4.png'),
+    Title: 'creating website Design and Development',
+    description:
+      'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
+    date: 'Friday, May 26',
+    people: [
+      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
+    ],
+    comment: [
+      {
+        name: 'Jude Oyekola',
+        comments: 'done with this',
+        image: require('../../assets/pic4.png'),
+      },
+      {
+        name: 'tolu',
+        comments: 'done with this today',
+        image: require('../../assets/pic3.png'),
+      },
+    ],
+  },
+  {
+    id: '3',
+    name: 'Debby pearl',
+    image: require('../../assets/pic4.png'),
+    Title: 'creating website Design and Development',
+    description:
+      'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
+    date: 'Friday, May 26',
+    people: [
+      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
+    ],
+    comment: [
+      {
+        name: 'Debby pearl',
+        comments: 'done with this',
+        image: require('../../assets/pic4.png'),
+      },
+      {
+        name: 'tolu',
+        comments: 'done with this today',
+        image: require('../../assets/pic3.png'),
+      },
+    ],
+  },
+  {
+    id: '4',
+    name: 'Adekola olaoluwa',
+    image: require('../../assets/pic4.png'),
+    Title: 'creating website Design and Development',
+    description:
+      'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
+    date: 'Friday, May 26',
+    people: [
+      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
+    ],
+    comment: [
+      {
+        name: 'Adekola olaoluwa',
+        comments: 'done with this',
+        image: require('../../assets/pic4.png'),
+      },
+      {
+        name: 'tolu',
+        comments: 'done with this today',
+        image: require('../../assets/pic3.png'),
+      },
+    ],
+  },
+  {
+    id: '5',
+    name: 'lighter',
+    image: require('../../assets/pic4.png'),
+    Title: 'creating website Design and Development',
+    description:
+      'this is the description section it can be as long jgggggggggggggggasd ada d adaddddddddddddad a dg a da d ad a da dgagdadoadad ad gaas i please.',
+    date: 'Friday, May 26',
+    people: [
+      {image: require('../../assets/pic4.png'), margin: 0, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 1, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 2, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 3, name: ''},
+      {image: require('../../assets/pic4.png'), margin: 4, name: ''},
+    ],
+    comment: [
+      {
+        name: 'lighter',
+        comments: 'done with this',
+        image: require('../../assets/pic4.png'),
+      },
+      {
+        name: 'tolu',
+        comments: 'done with this today',
+        image: require('../../assets/pic.png'),
+      },
+    ],
+  },
+];
