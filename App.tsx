@@ -11,6 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabScreen from './src/navigators/TabNavigator';
 import {TaskContextProvider} from './src/store/context';
 import TasksScreen from './src/screens/TasksScreen';
+import AllScreen from './src/screens/AllScreen';
 
 const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
@@ -28,6 +29,7 @@ function App(): JSX.Element {
             component={TasksScreen}
             options={{headerShown: false}}
           />
+          <Stack.Screen name="ViewAll" component={AllScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </TaskContextProvider>

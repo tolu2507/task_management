@@ -33,7 +33,10 @@ const HomeScreen = ({navigation}: any) => {
             text={'On going task'}
             smalltext={'View All'}
             onPress={() =>
-              navigation.navigate('ViewAll', {data: Todoctx.onGoing})
+              navigation.navigate('ViewAll', {
+                data: Todoctx.onGoing,
+                name: 'OnGoing Projects',
+              })
             }
           />
           {/* card horizontal view */}
@@ -56,7 +59,12 @@ const HomeScreen = ({navigation}: any) => {
           <DescriptionComponent
             text={'Daily Activity'}
             smalltext={'View All'}
-            onPress={() => navigation.navigate('ViewAll', {data: tasks})}
+            onPress={() =>
+              navigation.navigate('ViewAll', {
+                data: tasks,
+                name: 'Daily Activities',
+              })
+            }
           />
           {/* card horizontal view */}
           <View style={styles.scroll}>
